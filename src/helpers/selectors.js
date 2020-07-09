@@ -14,3 +14,11 @@ export function getInterview(state, interview) {
     } : null
 
 }
+
+export function getInterviewersForDay(state, day) {
+  const currentDay = state.days.find(({name}) => name === day)
+
+  const interviewers = currentDay ? currentDay.interviewers.map(appointmentId => state.interviewers[appointmentId]) : []
+
+  return interviewers
+}
