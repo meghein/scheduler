@@ -39,6 +39,8 @@ export default function Appointment(props) {
       interviewer
     };
 
+    console.log("save props:", props)
+
     transition(SAVING);
 
     props.bookInterview(props.id, interview)
@@ -55,7 +57,9 @@ export default function Appointment(props) {
 
     props.cancelInterview(props.id)
     .then(() => transition(EMPTY))
-    .catch(error => transition(ERROR_DELETE, true))
+    .catch(error => {
+      console.log(error)
+      transition(ERROR_DELETE, true)})
   }
 
   function onEdit() {
@@ -95,6 +99,7 @@ export default function Appointment(props) {
     )}
     {mode === CONFIRM && (
       <Confirm
+        message="Delete the appointment?"
         onCancel={onCancel}
         onConfirm={onConfirm}
       />
