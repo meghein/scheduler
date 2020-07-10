@@ -4,16 +4,18 @@ import Empty from "./Empty"
 import Show from "./Show"
 import Header from "./Header"
 import Form from "./Form"
+import Status from "./Status";
+
 import useVisualMode from "hooks/useVisualMode"
 
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
+  const SAVING = "SAVING";
+  const DELETING = "DELETING";
   // const EDIT = "EDIT";
   // const CONFIRM = "CONFIRM";
-  // const SAVING = "SAVING";
-  // const DELETING = "DELETING";
   
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -23,18 +25,32 @@ export default function Appointment(props) {
     transition(CREATE)
   }
 
-  // function onComplete() {
-  //   transition(SAVING)
-  //   transition(EMPTY)
-  // }
-
   function onCancel() {
     back()
   }
 
-  // function onSave() {
-  //   transition(SAVING)
-  // }
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+
+    transition(SAVING);
+
+    props.bookInterview(props.id, interview)
+    .then(() => transition(SHOW))
+  }
+
+  function onDelete() {
+    console.log(props)
+    // // props[id].interview = null;
+    // props.interview = null
+
+    transition(DELETING);
+
+    props.cancelInterview(props.id)
+    .then(() => transition(EMPTY))
+  }
 
   // function onComplete() {
   //   transition(SAVING)
@@ -51,7 +67,13 @@ export default function Appointment(props) {
   // function onConfirm() {
   //   transition(DELETING)
   // }
-  
+
+  // function onComplete() {
+  //   transition(SAVING)
+  //   transition(EMPTY)
+  // }
+ 
+
   return (
   <>
   <Header time={props.time}/>
@@ -61,12 +83,24 @@ export default function Appointment(props) {
       <Show
         student={props.interview.student}
         interviewer={props.interview.interviewer.name}
+        onDelete={onDelete}
       />
     )}
     {mode === CREATE && (
       <Form 
         interviewers={props.interviewers}
         onCancel={onCancel}
+        onSave={save}
+      />
+    )}
+    {mode === SAVING && (
+      <Status
+        message="Saving"
+      />
+    )}
+    {mode === DELETING && (
+      <Status
+        message="Deleting"
       />
     )}
   </article>
