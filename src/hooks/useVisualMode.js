@@ -6,7 +6,8 @@ export default function useVisualMode(initial) {
 
   function transition(newMode, replace = false) {
     setMode(newMode);
-    replace ? setHistory([...history]) : setHistory([...history, newMode])
+    replace ? setHistory(prev => ([...prev, mode])) : setHistory([...history, newMode])
+    
   }
 
   function back() {
