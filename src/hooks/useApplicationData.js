@@ -13,8 +13,8 @@ export default function useApplicationData(initial) {
 
   useEffect(() => {
     const daysAPI = axios.get(`/api/days`);
-    const appointmentsAPI = axios.get(`api/appointments/`);
-    const interviewersAPI = axios.get(`api/interviewers/`);
+    const appointmentsAPI = axios.get(`/api/appointments`);
+    const interviewersAPI = axios.get(`/api/interviewers`);
     Promise.all([daysAPI, appointmentsAPI, interviewersAPI]).then(all => {
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}))
     });
@@ -23,15 +23,6 @@ export default function useApplicationData(initial) {
   function getUpdatedDays(newAppointments) {
     return state.days.map((day, index) => {
       let freeSpots = 0;
-      // freeSpots = state.days[index].appointments.map((key) => {
-      //   return newAppointments[key].interview ? 0 : 1
-      //   return +!newAppointments[key].interview
-      // }).reduce((a, b) => a + b, 0)
-
-      // freeSpots = state.days[index].appointments.reduce((acc, key) => {
-      //   return acc + newAppointments[key].interview ? 0 : 1
-      // }, 0)
-
       for (let key of state.days[index].appointments) {
         if (newAppointments[key].interview === null) {
           freeSpots++
