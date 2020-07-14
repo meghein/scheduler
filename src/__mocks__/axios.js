@@ -52,62 +52,69 @@ const fixtures = {
     }
   }
 };
-
-// export default {
-//   get: jest.fn(url => {
-//     switch (url) {
-//       case "/api/days" : {
-//         return Promise.resolve({
-//           status: 200,
-//           statusText: "OK",
-//           data: fixtures.days
-//         });
-//       }
-//       case "/api/appointments": {
-//         return Promise.resolve({
-//           status: 200,
-//           statusText: "OK",
-//           data: fixtures.appointments
-//         });
-//       }
-//       case "/api/interviewers": {
-//         return Promise.resolve({
-//           status: 200,
-//           statusText: "OK",
-//           data: fixtures.interviewers
-//         });
-//       }
-//     }
-//   })
-// }
+const id = fixtures.appointments.id;
 
 export default {
-  defaults: { baseURL: "" },
   get: jest.fn(url => {
-    if (url === "/api/days") {
-      return Promise.resolve({
-        status: 200,
-        statusText: "OK",
-        data: fixtures.days
-      });
+    switch (url) {
+      case "/api/days" : {
+        return Promise.resolve({
+          status: 200,
+          statusText: "OK",
+          data: fixtures.days
+        });
+      }
+      case "/api/appointments": {
+        return Promise.resolve({
+          status: 200,
+          statusText: "OK",
+          data: fixtures.appointments
+        });
+      }
+      case "/api/interviewers": {
+        return Promise.resolve({
+          status: 200,
+          statusText: "OK",
+          data: fixtures.interviewers
+        });
+      }
     }
-
-    if (url === "/api/appointments") {
-      /* Resolve appointments data */
-      return Promise.resolve({
-        status: 200,
-        statusText: "OK",
-        data: fixtures.appointments
-      });
-    }
-
-    if (url === "/api/interviewers") {
-      /* Resolve interviewers data */
-      return Promise.resolve({
-        status: 200,
-        statusText: "OK",
-        data: fixtures.interviewers
-      });
-    }
+  }),
+  put: jest.fn(url => {
+    return Promise.resolve({ status: 204, statusText: "No Content" });
+  }),
+  delete: jest.fn(url => {
+    return Promise.resolve({ status: 204, statusText: "No Content" });
   })
-};
+}
+
+// export default {
+//   defaults: { baseURL: "" },
+//   get: jest.fn(url => {
+//     if (url === "/api/days") {
+//       return Promise.resolve({
+//         status: 200,
+//         statusText: "OK",
+//         data: fixtures.days
+//       });
+//     }
+
+//     if (url === "/api/appointments") {
+//       /* Resolve appointments data */
+//       return Promise.resolve({
+//         status: 200,
+//         statusText: "OK",
+//         data: fixtures.appointments
+//       });
+//     }
+
+//     if (url === "/api/interviewers") {
+//       /* Resolve interviewers data */
+//       return Promise.resolve({
+//         status: 200,
+//         statusText: "OK",
+//         data: fixtures.interviewers
+//       });
+//     }
+//   })
+// };
