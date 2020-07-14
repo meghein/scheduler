@@ -37,7 +37,6 @@ export default function useApplicationData(initial) {
           freeSpots++
         }
       }
-
       const newDay = {...day, spots: freeSpots}
       return newDay
     })
