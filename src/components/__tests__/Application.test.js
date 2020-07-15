@@ -2,6 +2,7 @@ import React from "react";
 
 import { 
   render,
+  cleanup,
   waitForElement,
   fireEvent,
   prettyDOM,
@@ -17,6 +18,7 @@ import Application from "components/Application";
 
 import axios from "axios";
 
+afterEach(cleanup);
 
 describe("Application", () => {
 it("changes the schedule when a new day is selected", async () => {
