@@ -28,12 +28,12 @@ export default function Form(props) {
     /*
     This if statement breaks the compass provided Form and Application test code (lines commented out in both).
     In compass, this edge case is not taken in to consideration.
-    If lines 33-35 are commented out, the test code passes.
+    If lines 33-35 are commented out, the test code (that is currently commented out)passes.
     */
     if (!interviewer) {
       return setError("Please choose an interviewer");
     }
-    setError("") // This line of code is needed for tests to pass, although redundant.
+    setError("") // This line of code is needed for tests to pass, seemingly redundant though.
     props.onSave(name, interviewer);
   };
 
