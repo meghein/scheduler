@@ -1,6 +1,8 @@
 # Interview Scheduler
 
-Interview Scheduler is a Full Stack Web App built in ReactJS with Storybook, Jest, Cypress, Websocket to learn ReactJS. The database is deployed using Heroku.
+Interview Scheduler is a Full Stack Web App built in ReactJS with Storybook, Jest, Cypress, Websocket to learn ReactJS. The app is deployed using Heroku, CircleCI and Netlify.
+
+[To view app online, click here](https://www.admiring-allen-1b5728.netlify.app "Netlify deployment")
 
 ## Final Product
 !["Navigating through different days"](https://github.com/meghein/scheduler/blob/master/docs/%20DayList.gif)
@@ -24,7 +26,7 @@ npm start
 ## Running Jest Test Framework
 
 ```sh
-npm test
+npm test or npm run coverage
 ```
 
 ## Running Storybook Visual Testbed

@@ -14,7 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "REACT_APP_WEBSOCKET_URL=ws://localhost:8001 react-scripts test",
+    "test": "REACT_APP_WEBSOCKET_URL=ws://react-scheduler-api.herokuapp.com/ react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public --ci",
     "build-storybook": "build-storybook -s public",
