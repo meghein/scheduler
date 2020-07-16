@@ -26,7 +26,7 @@ npm start
 ## Running Tests
 
 ```sh
-npm testnpm run coverage
+npm test
 ```
 ```sh
 npm run coverage
