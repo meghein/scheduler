@@ -6,6 +6,8 @@ import reducer, {
   SET_INTERVIEW
 } from "reducers/application";
 
+// Custom hook to manage api data throughout the app
+// Added stretch exercises with reducer and websocket
 export default function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
@@ -63,5 +65,5 @@ export default function useApplicationData() {
     bookInterview,
     cancelInterview,
   }
-}
+};
 

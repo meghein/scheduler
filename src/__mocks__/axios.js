@@ -52,7 +52,6 @@ const fixtures = {
     }
   }
 };
-const id = fixtures.appointments.id;
 
 export default {
   get: jest.fn(url => {
@@ -86,4 +85,4 @@ export default {
   delete: jest.fn(url => {
     return Promise.resolve({ status: 204, statusText: "No Content" });
   })
-}
+};

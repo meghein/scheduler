@@ -1,5 +1,6 @@
-import {useState} from 'react'
+import {useState} from 'react';
 
+// Custom hook that manages state while moving through the app
 export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
@@ -22,4 +23,4 @@ export default function useVisualMode(initial) {
   };
 
   return { mode, transition, back };
-}
+};

@@ -2,42 +2,38 @@ import React, { useState } from "react";
 import InterviewerList from "../InterviewerList";
 import Button from "../Button";
 
-
-
 export default function Form(props) {
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
-  const reset = () => {
-    setName("")
-    setInterviewer(null)
-  }
+  function reset() {
+    setName("");
+    setInterviewer(null);
+  };
 
-  const cancel = () => {
-    props.onCancel()
-    reset()
-  }
+  function cancel() {
+    props.onCancel();
+    reset();
+  };
 
-  const save = () => {
-    console.log("props", props)
+  function save() {
     props.onSave(name, interviewer);
-  }
+  };
 
   function validate() {
-    if (name === "") {
-      setError("Student name cannot be blank");
-      return;
+    if (!name) {
+      return setError("Student name cannot be blank");
     }
-
-    // if (interviewer === null) {
-    //   setError("Please select an interviewer");
-    //   return;
-    // }
-    setError("")
-  
+    // This if statement breaks the Form and Application test code.
+    // In compass, this edge case is not taken in to consideration.
+    // If lines 31-33 are commented out, the test code passes.
+    if (!interviewer) {
+      return setError("Please choose an interviewer");
+    }
+    setError("") // This line of code is needed for tests to pass, although redundant.
     props.onSave(name, interviewer);
-  }
+  };
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -64,4 +60,4 @@ export default function Form(props) {
       </section>
     </main>
   )
-}
+};

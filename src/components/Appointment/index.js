@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import "./styles.scss";
-import Empty from "./Empty"
-import Show from "./Show"
-import Header from "./Header"
-import Form from "./Form"
-import Confirm from "./Confirm"
+import Empty from "./Empty";
+import Show from "./Show";
+import Header from "./Header";
+import Form from "./Form";
+import Confirm from "./Confirm";
 import Status from "./Status";
 import Error from "./Error";
-
-import useVisualMode from "hooks/useVisualMode"
+import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
@@ -33,16 +32,12 @@ export default function Appointment(props) {
     back()
   }
 
-  function save(name, interviewer) {
+  function onSave(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
-
-    console.log("save props:", props)
-
     transition(SAVING);
-
     props.bookInterview(props.id, interview)
     .then(() => transition(SHOW))
     .catch(error => transition(ERROR_SAVE, true))
@@ -54,7 +49,6 @@ export default function Appointment(props) {
 
   function onConfirm() {
     transition(DELETING, true);
-
     props.cancelInterview(props.id)
     .then(() => transition(EMPTY))
     .catch(error => {
@@ -63,10 +57,10 @@ export default function Appointment(props) {
   }
 
   function onEdit() {
-    console.log(props.interview.interviewer)
     transition(EDIT)
   }
 
+  //useEffect added to fix stale state with WebSocket
   useEffect(() => {
     if (props.interview && mode === EMPTY) {
      transition(SHOW);
@@ -95,7 +89,7 @@ export default function Appointment(props) {
       <Form 
         interviewers={props.interviewers}
         onCancel={onCancel}
-        onSave={save}
+        onSave={onSave}
       />
     )}
     {mode === SAVING && (
@@ -119,7 +113,7 @@ export default function Appointment(props) {
       <Form 
         interviewers={props.interviewers}
         onCancel={onCancel}
-        onSave={save}
+        onSave={onSave}
         name={props.interview.student}
         interviewer={props.interview.interviewer.id}
       />
@@ -139,4 +133,4 @@ export default function Appointment(props) {
   </article>
   </>
   )
-}
+};

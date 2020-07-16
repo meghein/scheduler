@@ -11,8 +11,8 @@ export default function reducer(state, action) {
       return ({ ...state, days: action.days, appointments: action.appointments, interviewers: action.interviewers });
     
     case SET_INTERVIEW: {
-      const id = action.id
-      const interview = action.interview
+      const id = action.id;
+      const interview = action.interview;
 
       const appointment = {
         ...state.appointments[id],
@@ -33,8 +33,9 @@ export default function reducer(state, action) {
         `Tried to reduce with unsupported action type: ${action.type}`
       );
   }
-}
+};
 
+// Helper function to synchronize spots updating when appointments are booked/canceled
 function getUpdatedDays(state, newAppointments) {
   return state.days.map((day, index) => {
     let freeSpots = 0;
@@ -42,10 +43,10 @@ function getUpdatedDays(state, newAppointments) {
       if (newAppointments[key].interview === null) {
         freeSpots++
       }
-    }
-    const newDay = {...day, spots: freeSpots}
-    return newDay
+    };
+    const newDay = {...day, spots: freeSpots};
+    return newDay;
   })
-}
+};
 
-export { SET_DAY, SET_APPLICATION_DATA, SET_INTERVIEW }
+export { SET_DAY, SET_APPLICATION_DATA, SET_INTERVIEW };
