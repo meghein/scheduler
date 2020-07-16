@@ -2,7 +2,7 @@
 
 Interview Scheduler is a Full Stack Web App built in ReactJS with Storybook, Jest, Cypress and Websockets to learn ReactJS. The app is deployed using Heroku, CircleCI and Netlify.
 
-<!-- [To view app online, click here](https://www.admiring-allen-1b5728.netlify.app "Netlify deployment") -->
+[To view app online, click here](https://festive-cori-af6b5c.netlify.app/ "Netlify deployment")
 
 ## Final Product
 !["Navigating through different days"](https://github.com/meghein/scheduler/blob/master/docs/%20DayList.gif)
