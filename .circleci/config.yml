@@ -19,6 +19,22 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
 
+deploy:
+  machine:
+    enabled: true
+
+  working_directory: ~/client
+
+  steps:
+    - add_ssh_keys:
+        fingerprints:
+          - "ff:56:17:0c:0d:4c:cb:2f:8f:09:0b:4f:a3:32:93:2e"
+    - checkout
+    - run:
+        name: Push Master to Production
+        command: |
+          git push https://https://github.com/meghein/scheduler.git master:production
+
 workflows:
   version: 2
   test:
