@@ -25,15 +25,13 @@ export default function Form(props) {
     if (!name) {
       return setError("Student name cannot be blank");
     }
-    /*
-    This if statement breaks the compass provided Form and Application test code (lines commented out in both).
-    In compass, this edge case is not taken in to consideration.
-    If lines 33-35 are commented out, the test code (that is currently commented out)passes.
-    */
+
+    // Added blank interviewer conditional to fix form bug...
+    // In compass, this edge case is not taken in to consideration.
     if (!interviewer) {
       return setError("Please choose an interviewer");
     }
-    setError("") // This line of code is needed for tests to pass, seemingly redundant though.
+    setError("")
     props.onSave(name, interviewer);
   };
 
@@ -52,7 +50,7 @@ export default function Form(props) {
           />
         </form>
         <section className="appointment__validation">{error}</section>
-        <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />
+        <InterviewerList data-testid="interviewer-input" interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">

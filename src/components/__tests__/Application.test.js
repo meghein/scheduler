@@ -137,12 +137,15 @@ describe("Application", () => {
       target: { value: "Lydia Miller-Jones" }
     });
     
+    // fire event click on interviewer... Added test to fix blank interviewer bug
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"))
+
     fireEvent.click(getByText(appointment, "Save"));
     
     /* These lines of code only pass if edge case (no interviewer) is not accounted for... appointment should NOT save without interviewer. */
-    // await waitForElement(() =>
-    // getByText(appointment, "Could not save appointment")
-    // );
+    await waitForElement(() =>
+    getByText(appointment, "Could not save appointment")
+    );
   });
   
   it("shows the delete error when failing to delete an existing appointment", async () => {
